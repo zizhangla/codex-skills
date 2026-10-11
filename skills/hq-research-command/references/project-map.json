@@ -1,0 +1,9 @@
+{
+ "HQ":{"repo":"zizhangla/HoloGuide3D-Review","branch":"leader-review-bus","namespace":"COMMAND_HQ/"},
+ "P05":{"repo":"zizhangla/HoloGuide3D-Review","branch":"p5-bridge","namespace":"P5_BRIDGE/","authority":"WEB_CONTROL.json","decision":"WEB_DECISION.md"},
+ "P10":{"repo":"zizhangla/HoloGuide3D-Review","branch":"p10-integration-review-bus","namespace":"P10_REVIEW_BUS/","authority":"GPT_DECISION.md"},
+ "P11":{"repo":"zizhangla/HoloGuide3D-Review","branch":"p11-discrete-resource-review-bus","namespace":"P11_REVIEW_BUS/","authority":"GPT_DECISION.md"},
+ "P12":{"repo":"zizhangla/diffusion-models-3d","branch":"p12-review-bus","namespace":"P12_REVIEW_BUS/","authority":"GPT_DECISION.md"},
+ "P13":{"repo":"zizhangla/p13","branch":"main","namespace":"","authority":"GPT_DECISION.md"},
+ "OSG":{"repo":"zizhangla/OSG-Research","branch":"main","namespace":"","authority":"GPT_DECISION.md","components":["PhysicalComplexity/"]}
+}

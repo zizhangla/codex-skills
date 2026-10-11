@@ -1,0 +1,13 @@
+# 发布合同
+
+canonical zizhangla/HoloGuide3D-Review / leader-review-bus / COMMAND_HQ。本次UTC/CST、递增release/project scope，新immutable正文，不改旧正文。ACTIVE包含project/scope/time/source/hash/replaces/revokes/execution_authorized=false/native adoption状态；同project/scope最多一条ACTIVE。DRAFT未来实验附于ACTIVE方法令仍无运行权。
+
+同Git事务REGISTER old→SUPERSEDED/new→ACTIVE、CURRENT与新项完全一致、项目INDEX和CHANGELOG；保留frozen evidence、negative/protected/consumed限制及global policies。hash冲突停查provenance，不偷偷刷新hash。head变化核查影响，不用旧状态指控新代码，不无限追赶。
+
+变更只COMMAND_HQ；native仓库可加非authority入口，不改GPT_DECISION/CURRENT_TASK/预算/锁。多repo非原子：先central receipt，再mirror receipts。publish: commit→changed-path allowlist→CAS nonforce→逐文件remote byte SHA→pointer/unique ACTIVE验证。Skill本地与HQ镜像字节一致；quick_validate仅结构，还需授权只读真实用例和阻塞场景检验。
+
+状态分别HQ_PUBLISHED_REMOTE_VERIFIED、NATIVE_ADOPTION_PENDING/QUALIFIED/DEPLOYED、CHAT_DELIVERY_NOT_CONFIRMED，不宣称GLM已学/执行。给live入口和本次immutable链接；固定snapshot不是未来current。不发消息或创建scheduler，除非另有用户授权。
+
+## 必须另做的发布readiness
+
+validate_packet只检查字段完整；不检查authority真伪/现行性，不能作为publish acceptance。维护者必须记录PUBLICATION_READINESS.json：verified HQ HEAD/ACTIVE正文hash/唯一scope/current一致性、每项目实际读取的canonical authority路径与sha256、调和状态（VERIFIED_FOR_METHOD_REVIEW_ONLY或LOOKUP_CONFLICT_EXECUTION_BLOCKED）、source recheck和affected assertion disposition、独立review裁决与修复、允许变更路径、execution_authorized=false。只有方向/状态主张受证据支持时才签ACTIVE方法令。missing/all-missing/SUPERSEDED或未调和identity阻塞受影响科学采纳/执行；可公开BLOCKED审查与DRAFT规划，但不能伪称authority已验证或计划可执行。reader/预算/locks不存在仍无运行权，不以中央readiness补齐。无需authority的纯查新/设计必须明确DRAFT及unknown。

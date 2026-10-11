@@ -1,0 +1,11 @@
+# CNS：实际goal恢复与验证
+
+当用户明确要求恢复paused/blocked目标时，先查实际get_goal与错误。创建后继被“已有未完成goal”拒绝不等于没有平台恢复能力；不能伪complete绕过。
+
+本机已验证的官方路径：已安装codex app-server generate-json-schema --experimental确认ThreadGoalSetParams，官方thread/goal/get读取、thread/goal/set以status=active和origin=user恢复，再get读回。原窗口工具不足时可由授权总部调用本机官方客户端；实现与回执见{WAVEFRONT_PROJECT_ROOT}/reports/goal_platform_recovery_20261010/native_goal_client.py。只写目标生命周期，不直接编辑平台数据库/会话文件，不删除writer锁，不启动第二研究执行器。
+
+兼容目标优先仅恢复状态，省略objective/tokenBudget以保留用量。只有用户明确更新目标才更换objective；官方文档描述新objective可重置目标用量，但本机已测origin=user更新实际保留了用量和创建时间；必须比较真实before/after而非推断。旧目标/用量归档，不隐藏消耗、重置账号额度或突破剩余cap。科研attempt/资源预算始终独立，零预算不因ACTIVE变为可运行。
+
+若官方接口报告active writer，先检查唯一owner当前是否真idle、实际科学进程和输出状态。用户已授权修复且无活动运行时，原生archive/unarchive可关闭并恢复同一聊天，随后再修改目标；必须恢复未归档并保留原thread/history，禁止kill桌面/删锁。活动、状态未知或服务quota仍不允许强制绕过。采用此修复需记录原始错误和实际native操作回执。
+
+恢复后原owner实际get_goal应看见ACTIVE和正确验收目标；记录ACK并进入建设，不仅写计划。原生goal自动回合与实际进度才证明续行，阶段报告不能代替科学验收。研究heartbeat保持暂停；遇真实外部额度或预算停止，留状态而不轮询模型/购买重置额度。

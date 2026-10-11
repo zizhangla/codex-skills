@@ -1,0 +1,6 @@
+interface:
+  display_name: "具身智能进度"
+  short_description: "按组委会初赛要求核查证据、固定工作量权重计算完成度并汇报主窗口进展"
+  default_prompt: "使用 $embodied-progress 核查具身智能项目最新证据，按固定验收计划表汇报完成度、缺口和下一步。"
+policy:
+  allow_implicit_invocation: true

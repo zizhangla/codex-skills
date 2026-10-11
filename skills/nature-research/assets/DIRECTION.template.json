@@ -1,0 +1,20 @@
+{
+  "id": "Qx",
+  "title": "",
+  "status": "DRAFT",
+  "question": "",
+  "real_bottleneck": "",
+  "smallest_discriminator": "",
+  "hypotheses": [],
+  "physical_contract": {},
+  "strong_baselines": [],
+  "source_refs": [],
+  "novelty_status": "NOT_ESTABLISHED",
+  "positive": "",
+  "negative": "",
+  "reversal": "",
+  "unknown": "",
+  "legacy_assets_read_only": [],
+  "legacy_attempts_never_restart": [],
+  "execution_authorized_by_this_card": false
+}

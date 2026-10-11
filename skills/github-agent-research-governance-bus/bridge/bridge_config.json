@@ -1,0 +1,20 @@
+{
+  "schema_version": "github-agent-research-governance-bus.v1",
+  "project_id": "{{PROJECT_ID}}",
+  "repository_remote": "origin",
+  "repository_url": "{{REPOSITORY_URL}}",
+  "authority_branch": "{{AUTHORITY_BRANCH}}",
+  "authority_path": "GPT_DECISION.md",
+  "review_packet_path": "REVIEW_PACKET.md",
+  "source_root": "SOURCE",
+  "results_root": "RESULTS",
+  "history_root": "review-history",
+  "state_path": "bridge/bridge_state.json",
+  "lock_path": ".git/governance-bus.lock",
+  "local_executor": "GLM_OR_ZCODE_OR_CODEX",
+  "max_consecutive_communication_failures": 2,
+  "max_input_bytes": 1048576,
+  "git_sync_mode": "fast-forward-only",
+  "browser_messages_are_authority": false,
+  "memory_is_authority": false
+}

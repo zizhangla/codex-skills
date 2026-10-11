@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Research Governance Bus"
+  short_description: "Coordinate Web-GPT and local-agent research rounds"
+  default_prompt: "Use $github-agent-research-governance-bus to initialize a governed research repository and its first review round."

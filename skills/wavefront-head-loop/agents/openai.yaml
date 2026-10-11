@@ -1,0 +1,5 @@
+interface:
+  display_name: "波前Head持续审核与落实"
+  short_description: "定时送审、Git接收、新课题建窗与目标更新"
+policy:
+  allow_implicit_invocation: true

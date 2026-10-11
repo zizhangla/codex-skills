@@ -1,0 +1,4 @@
+interface:
+  display_name: "大调查 · CNS M6"
+  short_description: "CNS战略审查兼容入口，按需核查科学问题、创新、证据与投入路线"
+  default_prompt: "Use $da-diao-cha 对这个科研方向进行重大投入前的大调查，核查创新性、竞争解释、证据和停止条件。"

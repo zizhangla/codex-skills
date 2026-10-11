@@ -1,0 +1,4 @@
+interface:
+  display_name: "科研推进流程"
+  short_description: "区分探索与正式验证，减少重复审批，按完整科学问题推进研究"
+  default_prompt: "使用 $research-progress-workflow 精简本项目研究流程，保留证据边界并推进下一项完整科学任务。"

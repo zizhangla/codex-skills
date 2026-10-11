@@ -1,0 +1,17 @@
+{
+  "schema": "research-session-v1",
+  "direction_id": "Qx",
+  "stage": "DRAFT",
+  "current_question": "",
+  "consumed_new_runs": [],
+  "active_run": null,
+  "budget_used": {
+    "gpu_device_hours": 0,
+    "cpu_core_hours": 0
+  },
+  "unread_load_bearing_sources": [],
+  "next_minimal_action": "",
+  "do_not_restart": [],
+  "execution_authorized": false,
+  "last_updated": null
+}

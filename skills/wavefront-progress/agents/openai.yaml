@@ -1,0 +1,6 @@
+interface:
+  display_name: "波前项目进展与论文潜力"
+  short_description: "覆盖P1–P14、OSG和Q1–Q6，按证据给出科研评分、投稿定位、条件上限及下一步"
+  default_prompt: "使用 $wavefront-progress 核查当前全部波前项目进展，并按固定评分尺汇报。"
+policy:
+  allow_implicit_invocation: true

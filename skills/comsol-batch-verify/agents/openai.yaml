@@ -1,0 +1,3 @@
+interface:
+  display_name: "COMSOL 调用与结果核验"
+  short_description: "通过 Java/batch 验证 COMSOL 建模、求解和导出，定位接口与假成功问题"

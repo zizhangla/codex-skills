@@ -1,0 +1,982 @@
+{
+  "schema_version": 1,
+  "skills": [
+    {
+      "name": "ablation-planner",
+      "description": "Use when main results pass result-to-claim (`claim_supported = yes` or `partial`) and ablation studies are needed for paper submission. A secondary Codex agent designs ablations from a reviewer's perspective; the local executor reviews feasibility and implements.",
+      "origin": "local-skill",
+      "path": "skills/ablation-planner",
+      "project_template": false
+    },
+    {
+      "name": "alphaxiv",
+      "description": "Quick single-paper lookup via AlphaXiv LLM-optimized summaries with tiered source fallback. Use when user says \"explain this paper\", \"summarize paper\", pastes an arXiv/AlphaXiv URL, or provides a bare arXiv ID for quick understanding - not for broad literature search.",
+      "origin": "local-skill",
+      "path": "skills/alphaxiv",
+      "project_template": false
+    },
+    {
+      "name": "analyze-results",
+      "description": "Analyze ML experiment results, compute statistics, generate comparison tables and insights. Use when user says \"analyze results\", \"compare\", or needs to interpret experimental data.",
+      "origin": "local-skill",
+      "path": "skills/analyze-results",
+      "project_template": false
+    },
+    {
+      "name": "arxiv",
+      "description": "Search, download, and summarize academic papers from arXiv. Use when user says \"search arxiv\", \"download paper\", \"fetch arxiv\", \"arxiv search\", \"get paper pdf\", or wants to find and save papers from arXiv to the local paper library.",
+      "origin": "local-skill",
+      "path": "skills/arxiv",
+      "project_template": false
+    },
+    {
+      "name": "auto-paper-improvement-loop",
+      "description": "Autonomously improve a generated paper via GPT-6-Astra xhigh review → implement fixes → recompile, for 2 rounds. Use when user says \"改论文\", \"improve paper\", \"论文润色循环\", \"auto improve\", or wants to iteratively polish a generated paper.",
+      "origin": "local-skill",
+      "path": "skills/auto-paper-improvement-loop",
+      "project_template": false
+    },
+    {
+      "name": "auto-review-loop",
+      "description": "Autonomous multi-round research review loop. Repeatedly reviews using a secondary Codex agent, implements fixes, and re-reviews until positive assessment or max rounds reached. Use when user says \"auto review loop\", \"review until it passes\", or wants autonomous iterative improvement.",
+      "origin": "local-skill",
+      "path": "skills/auto-review-loop",
+      "project_template": false
+    },
+    {
+      "name": "auto-review-loop-llm",
+      "description": "Autonomous research review loop using any OpenAI-compatible LLM API. Configure via llm-chat MCP server or environment variables. Trigger with \"auto review loop llm\" or \"llm review\".",
+      "origin": "local-skill",
+      "path": "skills/auto-review-loop-llm",
+      "project_template": false
+    },
+    {
+      "name": "auto-review-loop-minimax",
+      "description": "Autonomous multi-round research review loop using MiniMax API. Use when you want to use MiniMax instead of Codex MCP for external review. Trigger with \"auto review loop minimax\" or \"minimax review\".",
+      "origin": "local-skill",
+      "path": "skills/auto-review-loop-minimax",
+      "project_template": false
+    },
+    {
+      "name": "citation-audit",
+      "description": "Zero-context verification that every bibliographic entry in the paper is real, correctly attributed, and used in a context the cited paper actually supports — catching hallucinated authors, wrong years, fabricated venues, version mismatches, and wrong-context citations. Use when user says \"审查引用\", \"check citations\", \"citation audit\", \"verify references\", \"引用核对\", or before submission to ensure bibliography integrity.",
+      "origin": "local-skill",
+      "path": "skills/citation-audit",
+      "project_template": false
+    },
+    {
+      "name": "claims-drafting",
+      "description": "Draft patent claims for an invention. Use when user says \"撰写权利要求\", \"draft claims\", \"写权利要求书\", \"claim drafting\", or wants to create patent claims. The core skill of the patent pipeline.",
+      "origin": "local-skill",
+      "path": "skills/claims-drafting",
+      "project_template": false
+    },
+    {
+      "name": "cns",
+      "description": "模块化科研工作集，融合Nature导向、ARIS精选方法与完整大调查／大审查。用于选题查新、理论推导、实验设计、工程与自主推进、结果归因、战略审查及主张整理；按任务调用，不每轮重跑全流程。",
+      "origin": "local-skill",
+      "path": "skills/cns",
+      "project_template": false
+    },
+    {
+      "name": "comm-lit-review",
+      "description": "Communications-domain literature review with Claude-style knowledge-base-first retrieval. Use when the task is about communications, wireless, networking, satellite/NTN, Wi-Fi, cellular, transport protocols, congestion control, routing, scheduling, MAC/PHY, rate adaptation, channel estimation, beamforming, or communication-system research and the user wants papers, related work, a survey, or a landscape summary.",
+      "origin": "local-skill",
+      "path": "skills/comm-lit-review",
+      "project_template": false
+    },
+    {
+      "name": "comsol-batch-verify",
+      "description": "在 Windows 上通过 COMSOL Java/batch 建模、求解、导出并核验结果，或定位编译、属性类型、文件安全与假成功问题。用于 COMSOL 调用排障和独立工程烟雾测试；不授予研究计算或旧尝试重跑权限。",
+      "origin": "local-skill",
+      "path": "skills/comsol-batch-verify",
+      "project_template": false
+    },
+    {
+      "name": "da-diao-cha",
+      "description": "CNS大调查／大审查模块的兼容入口。用户要求重大科研投入、旗舰方向、核心反例或全盘审查时，按CNS/M6执行；日常科研按CNS相应模块推进。",
+      "origin": "local-skill",
+      "path": "skills/da-diao-cha",
+      "project_template": false
+    },
+    {
+      "name": "deepxiv",
+      "description": "Search and progressively read open-access academic papers through DeepXiv. Use when the user wants layered paper access, section-level reading, trending papers, or DeepXiv-backed literature retrieval.",
+      "origin": "local-skill",
+      "path": "skills/deepxiv",
+      "project_template": false
+    },
+    {
+      "name": "dse-loop",
+      "description": "Autonomous design space exploration loop for computer architecture and EDA. Runs a program, analyzes results, tunes parameters, and iterates until objective is met or timeout. Use when user says \\\"DSE\\\", \\\"design space exploration\\\", \\\"sweep parameters\\\", \\\"optimize\\\", \\\"find best config\\\", or wants iterative parameter tuning.",
+      "origin": "local-skill",
+      "path": "skills/dse-loop",
+      "project_template": false
+    },
+    {
+      "name": "embodied-progress",
+      "description": "用户询问 {EMBODIED_PROJECT_ROOT} 的具身智能项目进度、完成度、初赛计划或剩余工作时，核查主窗口与实验证据，按固定组委会验收表和工作量权重计算并汇报。用于本项目监督，不直接启动训练或用于其他机器人项目。",
+      "origin": "local-skill",
+      "path": "skills/embodied-progress",
+      "project_template": true
+    },
+    {
+      "name": "embodiment-description",
+      "description": "Write detailed embodiment descriptions for patent specifications. Use when user says \"撰写实施例\", \"write embodiment\", \"实施例描述\", \"detailed description\", or wants to describe how to practice an invention.",
+      "origin": "local-skill",
+      "path": "skills/embodiment-description",
+      "project_template": false
+    },
+    {
+      "name": "exa-search",
+      "description": "AI-powered web search via Exa with content extraction. Use when user says \"exa search\", \"web search with content\", \"find similar pages\", or needs broad web results beyond academic databases (arXiv, Semantic Scholar).",
+      "origin": "local-skill",
+      "path": "skills/exa-search",
+      "project_template": false
+    },
+    {
+      "name": "experiment-audit",
+      "description": "Audit experiment integrity before claiming results. Uses fresh-agent GPT-6-Astra review (same-family provisional in the base Codex mirror) to check for fake ground truth, score normalization fraud, phantom results, and insufficient scope. Use when user says \"审计实验\", \"check experiment integrity\", \"audit results\", \"实验诚实度\", or after experiments complete before writing claims.",
+      "origin": "local-skill",
+      "path": "skills/experiment-audit",
+      "project_template": false
+    },
+    {
+      "name": "experiment-bridge",
+      "description": "Workflow 1.5: Bridge between idea discovery and auto review. Reads EXPERIMENT_PLAN.md, implements experiment code, deploys to GPU, collects initial results. Use when user says \"实现实验\", \"implement experiments\", \"bridge\", \"从计划到跑实验\", \"deploy the plan\", or has an experiment plan ready to execute.",
+      "origin": "local-skill",
+      "path": "skills/experiment-bridge",
+      "project_template": false
+    },
+    {
+      "name": "experiment-plan",
+      "description": "Turn a refined research proposal or method idea into a detailed, claim-driven experiment roadmap. Use after `research-refine`, or when the user asks for a detailed experiment plan, ablation matrix, evaluation protocol, run order, compute budget, or paper-ready validation that supports the core problem, novelty, simplicity, and any LLM / VLM / Diffusion / RL-based contribution.",
+      "origin": "local-skill",
+      "path": "skills/experiment-plan",
+      "project_template": false
+    },
+    {
+      "name": "experiment-queue",
+      "description": "SSH job queue for multi-seed/multi-config ML experiments with OOM-aware retry, stale-screen cleanup, and wave-transition race prevention. Use when user says \"batch experiments\", \"队列实验\", \"run grid\", \"multi-seed sweep\", \"auto-chain experiments\", or when /run-experiment is insufficient for 10+ jobs that need orchestration.",
+      "origin": "local-skill",
+      "path": "skills/experiment-queue",
+      "project_template": false
+    },
+    {
+      "name": "feishu-notify",
+      "description": "Send notifications to Feishu/Lark. Internal utility used by other skills, or manually via /feishu-notify. Use when user says \"发飞书\", \"notify feishu\", or other skills need to send status updates.",
+      "origin": "local-skill",
+      "path": "skills/feishu-notify",
+      "project_template": false
+    },
+    {
+      "name": "figure-description",
+      "description": "Process user-provided patent figures and generate formal drawing descriptions. Use when user says \"附图处理\", \"figure description\", \"附图说明\", \"drawings description\", or wants to describe patent figures with reference numerals.",
+      "origin": "local-skill",
+      "path": "skills/figure-description",
+      "project_template": false
+    },
+    {
+      "name": "figure-spec",
+      "description": "Generate deterministic publication-quality architecture, workflow, and pipeline diagrams from structured JSON (FigureSpec) into editable SVG. Use when user says \"架构图\", \"workflow 图\", \"pipeline 图\", \"确定性矢量图\", \"figure spec\", \"draw architecture\", or needs precise, editable, publication-ready vector diagrams. Preferred over AI illustration for formal architecture/workflow figures.",
+      "origin": "local-skill",
+      "path": "skills/figure-spec",
+      "project_template": false
+    },
+    {
+      "name": "formula-derivation",
+      "description": "Structures and derives research formulas when the user wants to 推导公式, build a theory line, organize assumptions, turn scattered equations into a coherent derivation, or rewrite theory notes into a paper-ready formula document. Use when the derivation target is not yet fully fixed, the main object still needs to be chosen, or the user needs a coherent derivation package rather than a finished theorem proof.",
+      "origin": "local-skill",
+      "path": "skills/formula-derivation",
+      "project_template": false
+    },
+    {
+      "name": "fudan-fulltext",
+      "description": "科研查新遇到非开放获取论文、Methods或补充材料缺口时，优先经出版社机构登录／CARSI获取复旦授权全文，WebVPN作为后备。Windows账号凭据和会话使用本机DPAPI加密。",
+      "origin": "local-skill",
+      "path": "skills/fudan-fulltext",
+      "project_template": false
+    },
+    {
+      "name": "gemini-search",
+      "description": "Search research papers via Gemini for broad literature discovery. Use when user says \"gemini search\", \"gemini papers\", \"search with gemini\", or wants AI-powered literature discovery beyond arXiv/Semantic Scholar indexes.",
+      "origin": "local-skill",
+      "path": "skills/gemini-search",
+      "project_template": false
+    },
+    {
+      "name": "github-agent-research-governance-bus",
+      "description": "Initialize or operate a GitHub-centered research governance bus in which Web-GPT plans and reviews, local agents execute, and committed schema-validated decisions control scientific authority. Use for multi-agent scientific or engineering projects that need durable rounds, evidence packets, claim boundaries, forensic audit, or project memory separated from execution authority.",
+      "origin": "local-skill",
+      "path": "skills/github-agent-research-governance-bus",
+      "project_template": false
+    },
+    {
+      "name": "grant-proposal",
+      "description": "Draft a structured grant proposal from research ideas and literature. Supports KAKENHI (Japan), NSF (US), NSFC (China, including 面上/青年/优青/杰青/海外优青/重点), ERC (EU), DFG (Germany), SNSF (Switzerland), ARC (Australia), NWO (Netherlands), and generic formats. Use when user says \"write grant\", \"grant proposal\", \"申請書\", \"write KAKENHI\", \"科研費\", \"基金申请\", \"写基金\", \"NSF proposal\", or wants to turn research ideas into a funding application.",
+      "origin": "local-skill",
+      "path": "skills/grant-proposal",
+      "project_template": false
+    },
+    {
+      "name": "hq-research-command",
+      "description": "用户要求给xx发号令、司令部大指令或指定科研项目全面审查并发布Git指引时，核查方案、代码和结果，形成Nature目标的可证伪规划、证据评分及COMMAND_HQ正式方法令。适用于HoloGuide3D Review Bus；普通代码修复或单篇文献查询不触发。",
+      "origin": "local-skill",
+      "path": "skills/hq-research-command",
+      "project_template": false
+    },
+    {
+      "name": "idea-creator",
+      "description": "Generate and rank research ideas given a broad direction. Use when user says \"找idea\", \"brainstorm ideas\", \"generate research ideas\", \"what can we work on\", or wants to explore a research area for publishable directions.",
+      "origin": "local-skill",
+      "path": "skills/idea-creator",
+      "project_template": false
+    },
+    {
+      "name": "idea-discovery",
+      "description": "Workflow 1: Full idea discovery pipeline to go from a broad research direction to validated, pilot-tested ideas. Use when user says \"找idea全流程\", \"idea discovery pipeline\", \"从零开始找方向\", or wants the complete idea exploration workflow.",
+      "origin": "local-skill",
+      "path": "skills/idea-discovery",
+      "project_template": false
+    },
+    {
+      "name": "idea-discovery-robot",
+      "description": "Workflow 1 adaptation for robotics and embodied AI. Orchestrates robotics-aware literature survey, idea generation, novelty check, and critical review to go from a broad robotics direction to benchmark-grounded, simulation-first ideas. Use when user says \\\"robotics idea discovery\\\", \\\"机器人找idea\\\", \\\"embodied AI idea\\\", \\\"机器人方向探索\\\", \\\"sim2real 选题\\\", or wants ideas for manipulation, locomotion, navigation, drones, humanoids, or general robot learning.",
+      "origin": "local-skill",
+      "path": "skills/idea-discovery-robot",
+      "project_template": false
+    },
+    {
+      "name": "integrity-forensics",
+      "description": "Run the Anti-Autoresearch integrity-forensics DETERMINISTIC slice (numeric core + rules-only reporter) against a paper via a SHA-pinned thin launcher, then convert the verdict into a typed policy gate (BLOCK/WARN/NO_NEW_BLOCKER) and an append-only obligations ledger. Codex-native limitation: upstream ships no Codex-native auditor pack, so the full nine-dimension semantic sweep requires a Claude Code session — this pack runs the honestly-scoped deterministic-only mode (it can flag, it can never say CLEAN). Use when user says \"integrity forensics\", \"forensic audit this paper\", \"投稿前自查诚信\".",
+      "origin": "local-skill",
+      "path": "skills/integrity-forensics",
+      "project_template": false
+    },
+    {
+      "name": "interview-cheatsheet",
+      "description": "Generate a long-form Chinese interview-prep cheat sheet on a specific ML/LLM topic — formulas with derivations, from-scratch PyTorch code, comparison tables, and 25 高频面试题 (L1 必会 / L2 进阶 / L3 顶级 lab). Use when the user says '写面试 cheat sheet', '写一份 X 教程', '帮我准备 Y 面试题', '出一份 X 速查', or wants a 600-1000 line Chinese tutorial on a specific ML topic.",
+      "origin": "local-skill",
+      "path": "skills/interview-cheatsheet",
+      "project_template": false
+    },
+    {
+      "name": "invention-structuring",
+      "description": "Structure a raw invention idea into a formal invention disclosure. Use when user says \"构建发明\", \"structure invention\", \"发明构建\", \"invention disclosure\", or wants to formalize a rough idea into a patent-ready structure.",
+      "origin": "local-skill",
+      "path": "skills/invention-structuring",
+      "project_template": false
+    },
+    {
+      "name": "jurisdiction-format",
+      "description": "Compile patent application into jurisdiction-specific filing format. Use when user says \"格式转换\", \"jurisdiction format\", \"国家格式\", \"compile patent\", or wants formatted patent documents for CN/US/EP filing.",
+      "origin": "local-skill",
+      "path": "skills/jurisdiction-format",
+      "project_template": false
+    },
+    {
+      "name": "kill-argument",
+      "description": "Two-thread adversarial review: a fresh reviewer constructs the strongest 200-word rejection memo, then a second fresh reviewer defends the paper point-by-point and surfaces still-unresolved critical issues. Use when user says \"kill argument\", \"adversarial review\", \"hostile review\", \"rebuttal preparation\", \"reviewer-2 simulation\", or before submitting a theory paper that has already passed standard review rounds.",
+      "origin": "local-skill",
+      "path": "skills/kill-argument",
+      "project_template": false
+    },
+    {
+      "name": "lean-formalize",
+      "description": "Develop and verify a mathematical proof in Lean, continue an incomplete Lean project, or audit whether it proves the original statement. Connect actual inputs to intermediate lemmas, assemble the target theorem, check its transitive axioms, and provide a reproducible handoff. Use when Lean is requested or a specific proof obligation benefits from formal verification; use proof-writer for ordinary mathematical drafting.",
+      "origin": "local-skill",
+      "path": "skills/lean-formalize",
+      "project_template": false
+    },
+    {
+      "name": "mermaid-diagram",
+      "description": "Generate Mermaid diagrams from user requirements. Save .mmd and .md files to figures/ with syntax verification. Supports flowcharts, sequence diagrams, class diagrams, ER diagrams, Gantt charts, and many more diagram types.",
+      "origin": "local-skill",
+      "path": "skills/mermaid-diagram",
+      "project_template": false
+    },
+    {
+      "name": "meta-apply",
+      "description": "Privileged applier that LANDS meta-optimize / corpus-audit patches the user approved, with a fresh landing review and human approval. Base Codex review is same-family provisional. Use when the user says \"meta apply\", \"/meta-apply\", \"land the staged patches\", \"应用优化\", after a /meta-optimize run.",
+      "origin": "local-skill",
+      "path": "skills/meta-apply",
+      "project_template": false
+    },
+    {
+      "name": "meta-optimize",
+      "description": "Analyze ARIS usage logs and propose optimizations to SKILL.md files, reviewer prompts, and workflow defaults. Outer-loop harness optimization inspired by Meta-Harness (Lee et al., 2026). Use when user says \"优化技能\", \"meta optimize\", \"improve skills\", \"分析使用记录\", or wants to optimize ARIS's own harness components based on accumulated experience.",
+      "origin": "local-skill",
+      "path": "skills/meta-optimize",
+      "project_template": false
+    },
+    {
+      "name": "monitor-experiment",
+      "description": "Monitor running experiments, check progress, collect results. Use when user says \"check results\", \"is it done\", \"monitor\", or wants experiment output.",
+      "origin": "local-skill",
+      "path": "skills/monitor-experiment",
+      "project_template": false
+    },
+    {
+      "name": "nature-research",
+      "description": "面向高影响原创研究的问题选择、定向查新、机制构造、反例攻击与有预算的自主探索。用于物理、光学、计算及交叉研究；先交付能改变科学判断的最小证据，不以论文等级保证、模型投票或流程测试代替科学结果。仅在用户明确授权的工作区和预算内运行新研究，不恢复旧实验或控制硬件。",
+      "origin": "local-skill",
+      "path": "skills/nature-research",
+      "project_template": false
+    },
+    {
+      "name": "novelty-check",
+      "description": "Verify research idea novelty against recent literature. Use when user says \"查新\", \"novelty check\", \"有没有人做过\", \"check novelty\", or wants to verify a research idea is novel before implementing.",
+      "origin": "local-skill",
+      "path": "skills/novelty-check",
+      "project_template": false
+    },
+    {
+      "name": "openalex",
+      "description": "Search academic papers via OpenAlex API for open citation data, institutional affiliations, and funding information. Use when user says \"openalex search\", \"search openalex\", \"open citation graph\", or wants comprehensive academic metadata beyond arXiv/Semantic Scholar.",
+      "origin": "local-skill",
+      "path": "skills/openalex",
+      "project_template": false
+    },
+    {
+      "name": "overleaf-sync",
+      "description": "Two-way sync between a local paper directory and an Overleaf project, so ARIS audit/edit workflows stay on the local copy while collaborators edit in the Overleaf web UI. Use when user says \"同步 overleaf\", \"overleaf sync\", \"推送到 overleaf\", \"connect overleaf\", \"Overleaf 桥接\", \"pull overleaf\", \"push overleaf\", or wants to bridge their ARIS paper directory with an Overleaf project.",
+      "origin": "local-skill",
+      "path": "skills/overleaf-sync",
+      "project_template": false
+    },
+    {
+      "name": "paper-claim-audit",
+      "description": "Zero-context verification that every number, comparison, and scope claim in the paper matches raw result files. Uses a fresh Codex reviewer with no prior context; base output is same-family provisional. Use when user says \"审查论文数据\", \"check paper claims\", \"verify numbers\", \"论文数字核对\", or before submission to ensure paper-to-evidence fidelity.",
+      "origin": "local-skill",
+      "path": "skills/paper-claim-audit",
+      "project_template": false
+    },
+    {
+      "name": "paper-compile",
+      "description": "Compile LaTeX paper to PDF, fix errors, and verify output. Use when user says \\\"编译论文\\\", \\\"compile paper\\\", \\\"build PDF\\\", \\\"生成PDF\\\", or wants to compile LaTeX into a submission-ready PDF.",
+      "origin": "local-skill",
+      "path": "skills/paper-compile",
+      "project_template": false
+    },
+    {
+      "name": "paper-figure",
+      "description": "Generate publication-quality figures and tables from experiment results. Use when user says \\\"画图\\\", \\\"作图\\\", \\\"generate figures\\\", \\\"paper figures\\\", or needs plots for a paper.",
+      "origin": "local-skill",
+      "path": "skills/paper-figure",
+      "project_template": false
+    },
+    {
+      "name": "paper-illustration",
+      "description": "Generate publication-quality AI illustrations for academic papers using Gemini image generation. Creates architecture diagrams, method illustrations with Codex-supervised iterative refinement loop. Use when user says \"生成图表\", \"画架构图\", \"AI绘图\", \"paper illustration\", \"generate diagram\", or needs visual figures for papers.",
+      "origin": "local-skill",
+      "path": "skills/paper-illustration",
+      "project_template": false
+    },
+    {
+      "name": "paper-illustration-image2",
+      "description": "Generate publication-quality academic illustrations through a local Codex app-server bridge that uses Codex native image generation. This is a separate experimental alternative to `paper-illustration`, intended for Claude Code users who want a GPT-image-style renderer without modifying the original skill.",
+      "origin": "local-skill",
+      "path": "skills/paper-illustration-image2",
+      "project_template": false
+    },
+    {
+      "name": "paper-plan",
+      "description": "Generate a structured paper outline from review conclusions and experiment results. Use when user says \\\"写大纲\\\", \\\"paper outline\\\", \\\"plan the paper\\\", \\\"论文规划\\\", or wants to create a paper plan before writing.",
+      "origin": "local-skill",
+      "path": "skills/paper-plan",
+      "project_template": false
+    },
+    {
+      "name": "paper-poster",
+      "description": "DEPRECATED — superseded by /paper-poster-html. Kept only as a redirect for muscle memory; do not use for new posters.",
+      "origin": "local-skill",
+      "path": "skills/paper-poster",
+      "project_template": false
+    },
+    {
+      "name": "paper-poster-html",
+      "description": "DEFAULT poster pipeline — build an academic conference poster (ICML/NeurIPS/ICLR/CVPR/...) as a single HTML/CSS file with measurement-driven hard gates, real paper figures, a two-hue design-token system, and print-ready PDF via headless Chromium. Use when the user says \"做海报\", \"poster\", \"conference poster\", \"paper poster\", or asks to design/redo a research poster.",
+      "origin": "local-skill",
+      "path": "skills/paper-poster-html",
+      "project_template": false
+    },
+    {
+      "name": "paper-slides",
+      "description": "Generate conference presentation slides (beamer LaTeX → PDF + editable PPTX) from a compiled paper, with speaker notes and full talk script. Use when user says \"做PPT\", \"做幻灯片\", \"make slides\", \"conference talk\", \"presentation slides\", \"生成slides\", \"写演讲稿\", or wants beamer slides for a conference talk.",
+      "origin": "local-skill",
+      "path": "skills/paper-slides",
+      "project_template": false
+    },
+    {
+      "name": "paper-talk",
+      "description": "End-to-end conference talk pipeline: paper → slide outline → Beamer + PPTX → per-page polish → assurance checks (claim / citation / anonymity) → final export and report. Default-good for academic conference talks (NeurIPS / ICML / ICLR / VALSE / 投稿 talks). Trigger phrases: \"做 talk\", \"做 PPT 全流程\", \"talk pipeline\", \"end-to-end slides\", \"做演讲\", \"conference talk full workflow\". Use when the user wants the complete talk artifact, not just a slide deck.",
+      "origin": "local-skill",
+      "path": "skills/paper-talk",
+      "project_template": false
+    },
+    {
+      "name": "paper-write",
+      "description": "Draft LaTeX paper section by section from an outline. Use when user says \\\"写论文\\\", \\\"write paper\\\", \\\"draft LaTeX\\\", \\\"开始写\\\", or wants to generate LaTeX content from a paper plan.",
+      "origin": "local-skill",
+      "path": "skills/paper-write",
+      "project_template": false
+    },
+    {
+      "name": "paper-writing",
+      "description": "Workflow 3: Full paper writing pipeline that goes from a narrative report to a polished, submission-ready PDF. Use when user says \"写论文全流程\", \"write paper pipeline\", \"从报告到PDF\", \"paper writing\", or wants the complete paper generation workflow.",
+      "origin": "local-skill",
+      "path": "skills/paper-writing",
+      "project_template": false
+    },
+    {
+      "name": "parameter-unblock",
+      "description": "科研项目因设备或模型参数缺失停止时，推广已有参数、查公开来源或构造自洽参考模型，完成敏感性与最小判别并恢复有范围续行。属于CNS设备解阻模块，不替代真实实验验收或原生预算。",
+      "origin": "local-skill",
+      "path": "skills/parameter-unblock",
+      "project_template": false
+    },
+    {
+      "name": "patent-novelty-check",
+      "description": "Assess patent novelty and non-obviousness against prior art. Use when user says \"专利查新\", \"patent novelty\", \"可专利性评估\", \"patentability check\", or wants to evaluate if an invention is patentable.",
+      "origin": "local-skill",
+      "path": "skills/patent-novelty-check",
+      "project_template": false
+    },
+    {
+      "name": "patent-pipeline",
+      "description": "Full patent drafting pipeline from invention description to jurisdiction-formatted filing documents. Supports CN (CNIPA), US (USPTO), EP (EPO). Supports invention patents and utility models. Use when user says \"写专利\", \"patent pipeline\", \"专利申请\", \"draft patent\", \"写权利要求书\", or wants to draft a complete patent application.",
+      "origin": "local-skill",
+      "path": "skills/patent-pipeline",
+      "project_template": false
+    },
+    {
+      "name": "patent-review",
+      "description": "Get an external patent examiner review of a patent application. Use when user says \"专利审查\", \"patent review\", \"审查意见\", \"examiner review\", or wants critical feedback on patent claims and specification.",
+      "origin": "local-skill",
+      "path": "skills/patent-review",
+      "project_template": false
+    },
+    {
+      "name": "pixel-art",
+      "description": "Generate pixel art SVG illustrations for READMEs, docs, or slides. Use when user says \"画像素图\", \"pixel art\", \"make an SVG illustration\", \"README hero image\", or wants a cute visual.",
+      "origin": "local-skill",
+      "path": "skills/pixel-art",
+      "project_template": false
+    },
+    {
+      "name": "prior-art-search",
+      "description": "Search patent databases and academic literature for prior art relevant to an invention. Use when user says \"现有技术检索\", \"prior art search\", \"专利检索\", \"check patents\", or wants to find relevant prior art.",
+      "origin": "local-skill",
+      "path": "skills/prior-art-search",
+      "project_template": false
+    },
+    {
+      "name": "proof-checker",
+      "description": "Rigorous mathematical proof verification and fixing workflow. Reads a LaTeX proof, identifies gaps via fresh-agent Codex GPT-6-Astra ultra review, fixes each gap with full derivations, re-reviews, and generates an audit report. Base review is same-family provisional. Use when user says \"检查证明\", \"verify proof\", \"proof check\", \"审证明\", \"check this proof\", or wants rigorous mathematical verification of a theory paper.",
+      "origin": "local-skill",
+      "path": "skills/proof-checker",
+      "project_template": false
+    },
+    {
+      "name": "proof-orchestrator",
+      "description": "Manage a stateful, run-directory-based proof project with Codex: continuation across runs, run-local source bookkeeping, manual GPT Pro handoff packages when a local attempt stalls, and an optional DeepSeek second opinion as additional evidence only. Use when the user asks for proof-run orchestration, a GPT Pro handoff, or cross-run proof continuation — use /proof-writer for ordinary proof drafting and /proof-checker for rigorous verification or submission acceptance.",
+      "origin": "local-skill",
+      "path": "skills/proof-orchestrator",
+      "project_template": false
+    },
+    {
+      "name": "proof-writer",
+      "description": "Writes rigorous mathematical proofs for ML/AI theory. Use when asked to prove a theorem, lemma, proposition, or corollary, fill in missing proof steps, formalize a proof sketch, 补全证明, 写证明, 证明某个命题, or determine whether a claimed proof can actually be completed under the stated assumptions.",
+      "origin": "local-skill",
+      "path": "skills/proof-writer",
+      "project_template": false
+    },
+    {
+      "name": "qzcli",
+      "description": "Manage GPU compute jobs on the Qizhi (启智) platform using qzcli — a kubectl-style CLI tool. Use when user says \"qzcli\", \"启智平台\", \"submit job\", \"stop job\", \"查计算组\", \"avail\", \"list jobs\", \"batch submit\", or needs to manage distributed training jobs on a Qizhi instance.",
+      "origin": "local-skill",
+      "path": "skills/qzcli",
+      "project_template": false
+    },
+    {
+      "name": "rebuttal",
+      "description": "Workflow 4: Submission rebuttal pipeline. Parses external reviews, enforces coverage and grounding, drafts a safe text-only rebuttal under venue limits, and manages follow-up rounds. Use when user says \"rebuttal\", \"reply to reviewers\", \"ICML rebuttal\", \"OpenReview response\", or wants to answer external reviews safely.",
+      "origin": "local-skill",
+      "path": "skills/rebuttal",
+      "project_template": false
+    },
+    {
+      "name": "render-html",
+      "description": "Render an ARIS Markdown / JSON artifact (IDEA_REPORT, AUTO_REVIEW, KILL_ARGUMENT, PAPER_PLAN, research-wiki state, etc.) into a single-file HTML view designed for human reading. Use when the user says \"渲染 HTML\", \"出一份 HTML 报告\", \"render html\", \"make this readable\", \"export to html\", or wants a polished web-rendered view of a Markdown artifact.",
+      "origin": "local-skill",
+      "path": "skills/render-html",
+      "project_template": false
+    },
+    {
+      "name": "research-implement-feature",
+      "description": "Build a working artifact from a plain \"implement X for me\" request: a running end-to-end spine first, then one feature per rung, with every under-determined decision written to an assumption ledger BEFORE the code that depends on it and a sweep for the ones that slipped through undeclared (same-family provisional in the base Codex mirror). Use when user says \"给我实现\", \"implement X\", \"帮我做一个能跑的\", \"先搭个原型再加功能\", \"build this feature\", \"prototype then extend\", or hands over a capability description rather than an experiment plan.",
+      "origin": "local-skill",
+      "path": "skills/research-implement-feature",
+      "project_template": false
+    },
+    {
+      "name": "research-lit",
+      "description": "Search and analyze research papers, find related work, summarize key ideas. Use when user says \"find papers\", \"related work\", \"literature review\", \"what does this paper say\", or needs to understand academic papers.",
+      "origin": "local-skill",
+      "path": "skills/research-lit",
+      "project_template": false
+    },
+    {
+      "name": "research-pipeline",
+      "description": "Full end-to-end research pipeline: from a broad research direction through idea discovery, experiments, and review all the way to a polished paper PDF. Use when user says \"全流程\", \"full pipeline\", \"从找idea到投稿\", \"end-to-end research\", or wants the complete autonomous research lifecycle.",
+      "origin": "local-skill",
+      "path": "skills/research-pipeline",
+      "project_template": false
+    },
+    {
+      "name": "research-progress-workflow",
+      "description": "当科研项目在计算前反复进行权限、证书或入口审查，或用户要求精简自主研究流程时，按探索、正式验证与硬件/论文分层推进，区分工程修复与科学尝试，保留冻结证据和真实执行边界。",
+      "origin": "local-skill",
+      "path": "skills/research-progress-workflow",
+      "project_template": false
+    },
+    {
+      "name": "research-refine",
+      "description": "Turn a vague research direction into a problem-anchored, elegant, frontier-aware, implementation-oriented method plan via iterative GPT-6-Astra review. Use when the user says \"refine my approach\", \"帮我细化方案\", \"decompose this problem\", \"打磨idea\", \"refine research plan\", \"细化研究方案\", or wants a concrete research method that stays simple, focused, and top-venue ready instead of a vague or overbuilt idea.",
+      "origin": "local-skill",
+      "path": "skills/research-refine",
+      "project_template": false
+    },
+    {
+      "name": "research-refine-pipeline",
+      "description": "Run an end-to-end workflow that chains `research-refine` and `experiment-plan`. Use when the user wants a one-shot pipeline from vague research direction to focused final proposal plus detailed experiment roadmap, or asks to \"串起来\", build a pipeline, do it end-to-end, or generate both the method and experiment plan together.",
+      "origin": "local-skill",
+      "path": "skills/research-refine-pipeline",
+      "project_template": false
+    },
+    {
+      "name": "research-review",
+      "description": "Get a deep critical review of research from GPT using a secondary Codex agent. Use when user says \"review my research\", \"help me review\", \"get external review\", or wants critical feedback on research ideas, papers, or experimental results.",
+      "origin": "local-skill",
+      "path": "skills/research-review",
+      "project_template": false
+    },
+    {
+      "name": "research-wiki",
+      "description": "Persistent research knowledge base that accumulates papers, ideas, experiments, claims, and their relationships across the entire research lifecycle. Inspired by Karpathy's LLM Wiki pattern. Use when user says \"知识库\", \"research wiki\", \"add paper\", \"wiki query\", \"查知识库\", or wants to build/query a persistent field map.",
+      "origin": "local-skill",
+      "path": "skills/research-wiki",
+      "project_template": false
+    },
+    {
+      "name": "resubmit-pipeline",
+      "description": "Workflow 5: orchestrate a text-only resubmit of a polished paper to a different venue under hard constraints (no new experiments, no bib edits, no framework changes, never overwrite prior submissions). Use when user says \"resubmit pipeline\", \"重投流程\", \"port paper to <new venue>\", \"resubmit to <venue>\", \"tighten paper for resubmission\", or has a rejected/withdrawn paper to move to a different top venue under tight time budget.",
+      "origin": "local-skill",
+      "path": "skills/resubmit-pipeline",
+      "project_template": false
+    },
+    {
+      "name": "result-to-claim",
+      "description": "Use when experiments complete to judge what claims the results support, what they don't, and what evidence is still missing. A secondary Codex agent evaluates results against intended claims and routes to next action (pivot, supplement, or confirm). Use after experiments finish — before writing the paper or running ablations.",
+      "origin": "local-skill",
+      "path": "skills/result-to-claim",
+      "project_template": false
+    },
+    {
+      "name": "run-experiment",
+      "description": "Deploy and run ML experiments on local or remote GPU servers. Use when user says \"run experiment\", \"deploy to server\", \"跑实验\", or needs to launch training jobs.",
+      "origin": "local-skill",
+      "path": "skills/run-experiment",
+      "project_template": false
+    },
+    {
+      "name": "semantic-scholar",
+      "description": "Search published venue papers (IEEE, ACM, Springer, etc.) via Semantic Scholar API. Complements /arxiv (preprints) with citation counts, venue metadata, and TLDR. Use when user says \"search semantic scholar\", \"find IEEE papers\", \"find journal papers\", \"venue papers\", \"citation search\", or wants published literature beyond arXiv preprints.",
+      "origin": "local-skill",
+      "path": "skills/semantic-scholar",
+      "project_template": false
+    },
+    {
+      "name": "serverless-modal",
+      "description": "Run GPU workloads on Modal — training, fine-tuning, inference, batch processing. Zero-config serverless: no SSH, no Docker, auto scale-to-zero. Use when user says \"modal run\", \"modal training\", \"modal inference\", \"deploy to modal\", \"need a GPU\", \"run on modal\", \"serverless GPU\", or needs remote GPU compute.",
+      "origin": "local-skill",
+      "path": "skills/serverless-modal",
+      "project_template": false
+    },
+    {
+      "name": "slides-polish",
+      "description": "Per-page Codex review + targeted python-pptx / Beamer fixes for academic talk slides. Use AFTER /paper-slides (or any externally generated PPTX/Beamer) when the deck looks 'mostly OK' but the user wants a final pass that aligns visual weight with a reference, bumps PPTX fonts to projector-readable size, kills italic style leaks, fixes text-frame overflow, and catches per-slide layout drift. Trigger phrases: \"polish slides\", \"slides 排版不对\", \"PPTX 字体太小\", \"和 Beamer 比一下\", \"per-page review\", \"和 codex 一页一页过\".",
+      "origin": "local-skill",
+      "path": "skills/slides-polish",
+      "project_template": false
+    },
+    {
+      "name": "specification-writing",
+      "description": "Write the full patent specification from claims and invention disclosure. Use when user says \"撰写说明书\", \"write specification\", \"写说明书\", \"patent description\", or wants to draft the complete patent specification.",
+      "origin": "local-skill",
+      "path": "skills/specification-writing",
+      "project_template": false
+    },
+    {
+      "name": "system-profile",
+      "description": "Profile a target (script, process, GPU, memory, interconnect) for performance analysis. Use when user says \"profile\", \"benchmark\", \"bottleneck\", or wants performance analysis.",
+      "origin": "local-skill",
+      "path": "skills/system-profile",
+      "project_template": false
+    },
+    {
+      "name": "training-check",
+      "description": "Interactively monitor training metrics from the current Codex session, periodically checking WandB or fallback logs for NaN, divergence, plateaus, and broken runs.",
+      "origin": "local-skill",
+      "path": "skills/training-check",
+      "project_template": false
+    },
+    {
+      "name": "vast-gpu",
+      "description": "Rent, manage, and destroy GPU instances on vast.ai. Use when user says \"rent gpu\", \"vast.ai\", \"rent a server\", \"cloud gpu\", or needs on-demand GPU without owning hardware.",
+      "origin": "local-skill",
+      "path": "skills/vast-gpu",
+      "project_template": false
+    },
+    {
+      "name": "wavefront-head-loop",
+      "description": "波前资源优化Head定时独立审核、Git方向接收及项目建窗/目标更新。用于本用户授权的波前优化总项目持续研究交接，不用于其他聊天或替代科学执行authority。",
+      "origin": "local-skill",
+      "path": "skills/wavefront-head-loop",
+      "project_template": true
+    },
+    {
+      "name": "wavefront-progress",
+      "description": "用户在波前资源优化总项目询问进展、有新进展吗、目前能发什么期刊或项目评分时，自动核查P1–P14、OSG和Q1–Q6，以Nature/Nature Photonics级别为10分输出证据、创新、当前投稿定位、条件上限和下一步。",
+      "origin": "local-skill",
+      "path": "skills/wavefront-progress",
+      "project_template": true
+    },
+    {
+      "name": "web-debug-search",
+      "description": "Search GitHub, Stack Exchange, Chinese technical communities, official documentation, and general developer web sources for software errors, compatibility problems, API usage questions, and real-world workarounds. Use for debugging and discovery only; results are not paper-citation evidence.",
+      "origin": "local-skill",
+      "path": "skills/web-debug-search",
+      "project_template": false
+    },
+    {
+      "name": "wiki-enrich",
+      "description": "Fill in the per-paper TODO sections of research-wiki/papers/<slug>.md pages that literature-ingest skills leave as bare scaffolds. Use when user says 'enrich wiki', 'fill paper TODOs', 'wiki body 補完', '把 paper 摘要寫進 wiki', 'research-wiki 自動填', or after a batch ingest that left papers/ as TODO scaffolds.",
+      "origin": "local-skill",
+      "path": "skills/wiki-enrich",
+      "project_template": false
+    },
+    {
+      "name": "writing-systems-papers",
+      "description": "Paragraph-level structural blueprint for 10-12 page systems papers targeting OSDI, SOSP, ASPLOS, NSDI, and EuroSys. Provides page allocation, paragraph templates, and writing patterns. Use when user says \"写系统论文\", \"systems paper structure\", \"OSDI paper\", \"SOSP paper\", or wants fine-grained structural guidance for a systems conference submission.",
+      "origin": "local-skill",
+      "path": "skills/writing-systems-papers",
+      "project_template": false
+    },
+    {
+      "name": "gpt-trigger",
+      "description": "GPT 触发（gpt-trigger）：Review Bus 循环的触发与运转入口（git-bus + Edge 单行 唤醒 + 后台 waiter 自动唤醒）。凡用户说\"gpt触发\"\"触发GPT\"\"唤醒GPT\"\"通知GPT\" \"给GPT发wake/门铃\"\"重启waiter\"\"等GPT决策\"\"这轮做完了/收尾发唤醒\"，或项目 采用\"Web-GPT 当决策者、ZCode 当受约束执行器、GitHub 分支为唯一事实源\"的协作 模式、需要建立/运转完整执行轮循环时，一律使用本 skill：执行器完成一轮 → 推送 git → 给 GPT 窗口发一行确定性唤醒 → 重启后台 waiter → STOP；GPT 把决策 作为提交推上总线后，waiter 退出并经后台任务通知自动唤醒会话，会话从 git 消费 authority 继续下一轮。绝不解析聊天内容、绝不往聊天框贴长文本载荷。",
+      "origin": "local-skill",
+      "path": "skills/gpt-trigger",
+      "project_template": true
+    },
+    {
+      "name": "review-bus-protocol",
+      "description": "GitHub Review Bus 三角色协作协议 — 网页版 ChatGPT/GPT 负责科学规划与审查，本地 GLM/ZCode 代理只做有界执行，GitHub 私有仓库作为唯一的任务/结果/权威总线（GPT_DECISION.md、REVIEW_PACKET.md、bridge 有限状态机、browser wake、reverse-wake daemon）。Use whenever setting up, operating, reviewing, debugging, or porting this protocol — including mentions of Review Bus / 审查总线, GPT_DECISION, REVIEW_PACKET, bridge 状态机 / WAITING_FOR_GPT, wake / reverse-wake / 唤醒, 规划审核执行分离, 双模型接力协作, register-result / ingest-decision / DECISION_REQUEST, or running/ closing a round in such a setup. Canonical reference implementation: HoloGuide3D.",
+      "origin": "local-skill",
+      "path": "skills/review-bus-protocol",
+      "project_template": true
+    },
+    {
+      "name": "imagegen",
+      "description": "Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas.",
+      "origin": "codex-system",
+      "path": "skills/imagegen",
+      "project_template": false
+    },
+    {
+      "name": "openai-docs",
+      "description": "Use for Codex models/pricing, scheduled tasks, skills, settings, setup, troubleshooting, customization, automations, and self-knowledge—including 'you,' 'your,' 'this app,' or 'this coding agent' when they refer to Codex—and for OpenAI APIs/products and ChatGPT Work. Also use for model choice/migration, prompting, SDKs, Responses, Realtime, agents, evals, and Chat/Work/Codex comparisons. Do not use for generic app/software tasks that merely mention Codex.",
+      "origin": "codex-system",
+      "path": "skills/openai-docs",
+      "project_template": false
+    },
+    {
+      "name": "review-agent",
+      "description": "Perform a read-only, defect-first review of a specified code change and return every actionable finding. Use when another agent delegates review of uncommitted changes, a base-branch diff, a commit, or custom review instructions.",
+      "origin": "codex-system",
+      "path": "skills/review-agent",
+      "project_template": false
+    },
+    {
+      "name": "skill-creator",
+      "description": "Create or update a Codex skill with appropriately scoped instructions and any needed supporting resources.",
+      "origin": "codex-system",
+      "path": "skills/skill-creator",
+      "project_template": false
+    },
+    {
+      "name": "skill-installer",
+      "description": "Install Codex skills into $CODEX_HOME/skills from a curated list or a GitHub repo path. Use when a user asks to list installable skills, install a curated skill, or install a skill from another repo (including private repos).",
+      "origin": "codex-system",
+      "path": "skills/skill-installer",
+      "project_template": false
+    }
+  ],
+  "shared_resources": [
+    "skills/shared-references"
+  ],
+  "sanitized_files": [
+    {
+      "skill": "cns",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "cns",
+      "path": "references/PLATFORM_GOAL_RECOVERY.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "cns",
+      "path": "references/WAVEFRONT_PROFILE.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "comsol-batch-verify",
+      "path": "references/verified-local.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "embodied-progress",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "embodied-progress",
+      "path": "scripts/progress_report.py",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "github-agent-research-governance-bus",
+      "path": "README.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "nature-research",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "novelty-check",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "paper-poster-html",
+      "path": "DESIGN_FINAL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "research-lit",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "research-pipeline",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "research-progress-workflow",
+      "path": "references/adoption-and-ledger.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "wavefront-head-loop",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "wavefront-progress",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "wavefront-progress",
+      "path": "scripts/collect_evidence.py",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "gpt-trigger",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "review-bus-protocol",
+      "path": "SKILL.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "review-bus-protocol",
+      "path": "references/bootstrap-new-project.md",
+      "reason": "portable_paths_and_removed_personal_bindings"
+    },
+    {
+      "skill": "review-bus-protocol",
+      "path": "SKILL.md",
+      "reason": "quoted_invalid_yaml_description"
+    }
+  ],
+  "plugin_skills": [
+    {
+      "plugin": "computer-use",
+      "skills": [
+        "computer-use"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "visualize",
+      "skills": [
+        "visualize"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "adobe",
+      "skills": [
+        "adobe-batch-edit-photos",
+        "adobe-create-mockups",
+        "adobe-create-social-variations",
+        "adobe-design-from-template",
+        "adobe-edit-quick-cut",
+        "adobe-fonts",
+        "adobe-retouch-portraits"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "cloud-environment",
+      "skills": [
+        "runtime"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "data-analytics",
+      "skills": [
+        "analyze-data-quality",
+        "build-dashboard",
+        "build-report",
+        "convert-to-doc",
+        "convert-to-slides",
+        "create-data-context",
+        "design-kpis",
+        "gather-business-context",
+        "index",
+        "jupyter-notebooks",
+        "kpi-reporting",
+        "market-sizing",
+        "metric-diagnostics",
+        "product-business-analysis",
+        "publish-artifact-to-sites",
+        "report-to-pdf",
+        "schedule-refresh-jobs",
+        "share-artifact-summary",
+        "validate-data",
+        "visualize-data"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "google-drive",
+      "skills": [
+        "google-docs",
+        "google-drive",
+        "google-drive-comments",
+        "google-sheets",
+        "google-slides"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "pages",
+      "skills": [
+        "maintain-space",
+        "manage-schedules",
+        "organize-space",
+        "write-page"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "product-design",
+      "skills": [
+        "audit",
+        "design-qa",
+        "get-context",
+        "ideate",
+        "image-to-code",
+        "index",
+        "research",
+        "share",
+        "url-to-code",
+        "user-context"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "work-pets",
+      "skills": [
+        "create-pet",
+        "pets",
+        "update-pet"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "plugin-management",
+      "skills": [
+        "plugin-management"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "sites",
+      "skills": [
+        "sites"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "documents",
+      "skills": [
+        "documents"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "pdf",
+      "skills": [
+        "pdf"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "presentations",
+      "skills": [
+        "presentations"
+      ],
+      "installation": "Install the named plugin in Codex"
+    },
+    {
+      "plugin": "spreadsheets",
+      "skills": [
+        "excel-live-control",
+        "spreadsheets"
+      ],
+      "installation": "Install the named plugin in Codex"
+    }
+  ]
+}

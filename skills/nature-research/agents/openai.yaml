@@ -1,0 +1,6 @@
+interface:
+  display_name: "高影响原创研究"
+  short_description: "以物理服务为目标，结合定向查新、合法构造、强经典对照与反例完成有预算的研究闭环"
+  default_prompt: "使用 $nature-research，在指定方向和已授权预算内完成一个能够改变科学判断的研究回合。"
+policy:
+  allow_implicit_invocation: true

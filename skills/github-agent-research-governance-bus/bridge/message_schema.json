@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/github-agent-research-governance-bus/message.schema.json",
+  "title": "HOLOBRIDGE_REVIEW_READY message",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event",
+    "round",
+    "carrier_commit",
+    "reviewed_commit",
+    "result_id",
+    "packet_sha"
+  ],
+  "properties": {
+    "event": {
+      "const": "HOLOBRIDGE_REVIEW_READY"
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "carrier_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,64}$"
+    },
+    "reviewed_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,64}$"
+    },
+    "result_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "packet_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "x-wire-format": "HOLOBRIDGE_REVIEW_READY round={round} carrier_commit={carrier_commit} reviewed_commit={reviewed_commit} result_id={result_id} packet_sha={packet_sha}",
+  "x-project-binding": "The receiving endpoint must bind this message to one configured repository and project_id before validation."
+}

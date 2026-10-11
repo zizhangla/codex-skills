@@ -1,0 +1,18 @@
+{
+  "schema": "research-claims-v1",
+  "claims": [
+    {
+      "id": "C001",
+      "text": "待填写的明确命题",
+      "status": "UNKNOWN",
+      "origin": "OUR_HYPOTHESIS",
+      "scope": "",
+      "assumptions": [],
+      "evidence_paths": [],
+      "source_refs": [],
+      "not_supported": [],
+      "supersedes": null,
+      "why_decision_changes": ""
+    }
+  ]
+}
