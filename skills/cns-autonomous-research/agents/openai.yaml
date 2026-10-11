@@ -1,0 +1,6 @@
+interface:
+  display_name: "CNS自动研究"
+  short_description: "从科研方向自主选题、建目标与实验，完成CNS分析并规划持续研究"
+  default_prompt: "使用 $cns-autonomous-research 帮我研究一下这个方向，完成选题、目标、实验和CNS复核。"
+policy:
+  allow_implicit_invocation: true

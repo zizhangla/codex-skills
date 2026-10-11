@@ -1,19 +1,19 @@
 # Codex Skills — zizhangla 的技能合集
 
-**103 个本地技能**，覆盖科研选题、查新、理论与证明、实验、审计、论文与图表、专利、项目治理、通用辅助及预装技能。包含被技能引用的 shared-references 共享参考。完整列表见 [CATALOG.md](CATALOG.md)，机器可读目录见 [catalog.json](catalog.json)。
+**104 个本地技能**，覆盖科研选题、查新、理论与证明、实验、审计、论文与图表、专利、项目治理、通用辅助及预装技能。包含被技能引用的 shared-references 共享参考。完整列表见 [CATALOG.md](CATALOG.md)，机器可读目录见 [catalog.json](catalog.json)。
 
 ## 在 Codex 中安装全部技能
 
 复制以下指令到Codex：
 
 ```text
-从 https://github.com/zizhangla/codex-skills 克隆 v1.0.0 版本，检查 scripts/install.py 和 checksums.json，然后执行 python scripts/install.py --all。保留并跳过我的已有技能，不覆盖 .system 预装技能；按实际要使用的技能配置依赖和工具连接，不批量运行实验或录入凭据。安装后告诉我新增与跳过的技能数量。
+从 https://github.com/zizhangla/codex-skills 克隆 v1.0.1 版本，检查 scripts/install.py 和 checksums.json，然后执行 python scripts/install.py --all。保留并跳过我的已有技能，不覆盖 .system 预装技能；按实际要使用的技能配置依赖和工具连接，不批量运行实验或录入凭据。安装后告诉我新增与跳过的技能数量。
 ```
 
 在终端中也可直接执行（需要Git和Python 3.10+）：
 
 ```text
-git clone --branch v1.0.0 https://github.com/zizhangla/codex-skills.git
+git clone --branch v1.0.1 https://github.com/zizhangla/codex-skills.git
 cd codex-skills
 python scripts/install.py --all
 ```
@@ -29,7 +29,7 @@ python scripts/install.py --skills cns nature-research fudan-fulltext
 也可使用Codex预装安装器：
 
 ```text
-使用 $skill-installer 从 https://github.com/zizhangla/codex-skills/tree/v1.0.0/skills/cns 安装 cns。检查其共享参考与关联技能依赖。
+使用 $skill-installer 从 https://github.com/zizhangla/codex-skills/tree/v1.0.1/skills/cns 安装 cns。检查其共享参考与关联技能依赖。
 ```
 
 有相邻共享文件依赖时，优先使用本仓库安装脚本。`--dry-run`只预览安装计划，`--dest <目录>`指定独立安装目录。
@@ -44,7 +44,7 @@ python scripts/install.py --skills cns nature-research fudan-fulltext
 
 ## 校验与来源
 
-源文件清单及SHA256见 [checksums.json](checksums.json)。发布时检查全部本地技能YAML入口和Python语法，并做全新目录的安装测试；这属于打包校验，不等于103个技能的所有外部服务与科学流程均已端到端验证。
+源文件清单及SHA256见 [checksums.json](checksums.json)。发布时检查全部本地技能YAML入口和Python语法，并做全新目录的安装测试；这属于打包校验，不等于104个技能的所有外部服务与科学流程均已端到端验证。
 
 复旦机构登录／CARSI工作流已在两篇订阅论文上核验PDF；独立的[复旦技能仓库](https://github.com/zizhangla/fudan-fulltext-skill)保留其发布说明。
 

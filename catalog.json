@@ -79,6 +79,13 @@
       "project_template": false
     },
     {
+      "name": "cns-autonomous-research",
+      "description": "用户说“帮我研究一下XXXX”、给出科研方向并要求自主选题、建研究窗口、设置目标和开展实验时，调用CNS完成问题选择、查新推导、实验与结果审查、后继规划和持续推进。简单知识问答或仅查论文不自动建窗。",
+      "origin": "local-skill",
+      "path": "skills/cns-autonomous-research",
+      "project_template": false
+    },
+    {
       "name": "comm-lit-review",
       "description": "Communications-domain literature review with Claude-style knowledge-base-first retrieval. Use when the task is about communications, wireless, networking, satellite/NTN, Wi-Fi, cellular, transport protocols, congestion control, routing, scheduling, MAC/PHY, rate adaptation, channel estimation, beamforming, or communication-system research and the user wants papers, related work, a survey, or a landscape summary.",
       "origin": "local-skill",
@@ -212,6 +219,13 @@
       "project_template": false
     },
     {
+      "name": "gpt-trigger",
+      "description": "GPT 触发（gpt-trigger）：Review Bus 循环的触发与运转入口（git-bus + Edge 单行 唤醒 + 后台 waiter 自动唤醒）。凡用户说\"gpt触发\"\"触发GPT\"\"唤醒GPT\"\"通知GPT\" \"给GPT发wake/门铃\"\"重启waiter\"\"等GPT决策\"\"这轮做完了/收尾发唤醒\"，或项目 采用\"Web-GPT 当决策者、ZCode 当受约束执行器、GitHub 分支为唯一事实源\"的协作 模式、需要建立/运转完整执行轮循环时，一律使用本 skill：执行器完成一轮 → 推送 git → 给 GPT 窗口发一行确定性唤醒 → 重启后台 waiter → STOP；GPT 把决策 作为提交推上总线后，waiter 退出并经后台任务通知自动唤醒会话，会话从 git 消费 authority 继续下一轮。绝不解析聊天内容、绝不往聊天框贴长文本载荷。",
+      "origin": "local-skill",
+      "path": "skills/gpt-trigger",
+      "project_template": true
+    },
+    {
       "name": "grant-proposal",
       "description": "Draft a structured grant proposal from research ideas and literature. Supports KAKENHI (Japan), NSF (US), NSFC (China, including 面上/青年/优青/杰青/海外优青/重点), ERC (EU), DFG (Germany), SNSF (Switzerland), ARC (Australia), NWO (Netherlands), and generic formats. Use when user says \"write grant\", \"grant proposal\", \"申請書\", \"write KAKENHI\", \"科研費\", \"基金申请\", \"写基金\", \"NSF proposal\", or wants to turn research ideas into a funding application.",
       "origin": "local-skill",
@@ -244,6 +258,13 @@
       "description": "Workflow 1 adaptation for robotics and embodied AI. Orchestrates robotics-aware literature survey, idea generation, novelty check, and critical review to go from a broad robotics direction to benchmark-grounded, simulation-first ideas. Use when user says \\\"robotics idea discovery\\\", \\\"机器人找idea\\\", \\\"embodied AI idea\\\", \\\"机器人方向探索\\\", \\\"sim2real 选题\\\", or wants ideas for manipulation, locomotion, navigation, drones, humanoids, or general robot learning.",
       "origin": "local-skill",
       "path": "skills/idea-discovery-robot",
+      "project_template": false
+    },
+    {
+      "name": "imagegen",
+      "description": "Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas.",
+      "origin": "codex-system",
+      "path": "skills/imagegen",
       "project_template": false
     },
     {
@@ -328,6 +349,13 @@
       "description": "Verify research idea novelty against recent literature. Use when user says \"查新\", \"novelty check\", \"有没有人做过\", \"check novelty\", or wants to verify a research idea is novel before implementing.",
       "origin": "local-skill",
       "path": "skills/novelty-check",
+      "project_template": false
+    },
+    {
+      "name": "openai-docs",
+      "description": "Use for Codex models/pricing, scheduled tasks, skills, settings, setup, troubleshooting, customization, automations, and self-knowledge—including 'you,' 'your,' 'this app,' or 'this coding agent' when they refer to Codex—and for OpenAI APIs/products and ChatGPT Work. Also use for model choice/migration, prompting, SDKs, Responses, Realtime, agents, evals, and Chat/Work/Codex comparisons. Do not use for generic app/software tasks that merely mention Codex.",
+      "origin": "codex-system",
+      "path": "skills/openai-docs",
       "project_template": false
     },
     {
@@ -583,6 +611,20 @@
       "project_template": false
     },
     {
+      "name": "review-agent",
+      "description": "Perform a read-only, defect-first review of a specified code change and return every actionable finding. Use when another agent delegates review of uncommitted changes, a base-branch diff, a commit, or custom review instructions.",
+      "origin": "codex-system",
+      "path": "skills/review-agent",
+      "project_template": false
+    },
+    {
+      "name": "review-bus-protocol",
+      "description": "GitHub Review Bus 三角色协作协议 — 网页版 ChatGPT/GPT 负责科学规划与审查，本地 GLM/ZCode 代理只做有界执行，GitHub 私有仓库作为唯一的任务/结果/权威总线（GPT_DECISION.md、REVIEW_PACKET.md、bridge 有限状态机、browser wake、reverse-wake daemon）。Use whenever setting up, operating, reviewing, debugging, or porting this protocol — including mentions of Review Bus / 审查总线, GPT_DECISION, REVIEW_PACKET, bridge 状态机 / WAITING_FOR_GPT, wake / reverse-wake / 唤醒, 规划审核执行分离, 双模型接力协作, register-result / ingest-decision / DECISION_REQUEST, or running/ closing a round in such a setup. Canonical reference implementation: HoloGuide3D.",
+      "origin": "local-skill",
+      "path": "skills/review-bus-protocol",
+      "project_template": true
+    },
+    {
       "name": "run-experiment",
       "description": "Deploy and run ML experiments on local or remote GPU servers. Use when user says \"run experiment\", \"deploy to server\", \"跑实验\", or needs to launch training jobs.",
       "origin": "local-skill",
@@ -601,6 +643,20 @@
       "description": "Run GPU workloads on Modal — training, fine-tuning, inference, batch processing. Zero-config serverless: no SSH, no Docker, auto scale-to-zero. Use when user says \"modal run\", \"modal training\", \"modal inference\", \"deploy to modal\", \"need a GPU\", \"run on modal\", \"serverless GPU\", or needs remote GPU compute.",
       "origin": "local-skill",
       "path": "skills/serverless-modal",
+      "project_template": false
+    },
+    {
+      "name": "skill-creator",
+      "description": "Create or update a Codex skill with appropriately scoped instructions and any needed supporting resources.",
+      "origin": "codex-system",
+      "path": "skills/skill-creator",
+      "project_template": false
+    },
+    {
+      "name": "skill-installer",
+      "description": "Install Codex skills into $CODEX_HOME/skills from a curated list or a GitHub repo path. Use when a user asks to list installable skills, install a curated skill, or install a skill from another repo (including private repos).",
+      "origin": "codex-system",
+      "path": "skills/skill-installer",
       "project_template": false
     },
     {
@@ -671,55 +727,6 @@
       "description": "Paragraph-level structural blueprint for 10-12 page systems papers targeting OSDI, SOSP, ASPLOS, NSDI, and EuroSys. Provides page allocation, paragraph templates, and writing patterns. Use when user says \"写系统论文\", \"systems paper structure\", \"OSDI paper\", \"SOSP paper\", or wants fine-grained structural guidance for a systems conference submission.",
       "origin": "local-skill",
       "path": "skills/writing-systems-papers",
-      "project_template": false
-    },
-    {
-      "name": "gpt-trigger",
-      "description": "GPT 触发（gpt-trigger）：Review Bus 循环的触发与运转入口（git-bus + Edge 单行 唤醒 + 后台 waiter 自动唤醒）。凡用户说\"gpt触发\"\"触发GPT\"\"唤醒GPT\"\"通知GPT\" \"给GPT发wake/门铃\"\"重启waiter\"\"等GPT决策\"\"这轮做完了/收尾发唤醒\"，或项目 采用\"Web-GPT 当决策者、ZCode 当受约束执行器、GitHub 分支为唯一事实源\"的协作 模式、需要建立/运转完整执行轮循环时，一律使用本 skill：执行器完成一轮 → 推送 git → 给 GPT 窗口发一行确定性唤醒 → 重启后台 waiter → STOP；GPT 把决策 作为提交推上总线后，waiter 退出并经后台任务通知自动唤醒会话，会话从 git 消费 authority 继续下一轮。绝不解析聊天内容、绝不往聊天框贴长文本载荷。",
-      "origin": "local-skill",
-      "path": "skills/gpt-trigger",
-      "project_template": true
-    },
-    {
-      "name": "review-bus-protocol",
-      "description": "GitHub Review Bus 三角色协作协议 — 网页版 ChatGPT/GPT 负责科学规划与审查，本地 GLM/ZCode 代理只做有界执行，GitHub 私有仓库作为唯一的任务/结果/权威总线（GPT_DECISION.md、REVIEW_PACKET.md、bridge 有限状态机、browser wake、reverse-wake daemon）。Use whenever setting up, operating, reviewing, debugging, or porting this protocol — including mentions of Review Bus / 审查总线, GPT_DECISION, REVIEW_PACKET, bridge 状态机 / WAITING_FOR_GPT, wake / reverse-wake / 唤醒, 规划审核执行分离, 双模型接力协作, register-result / ingest-decision / DECISION_REQUEST, or running/ closing a round in such a setup. Canonical reference implementation: HoloGuide3D.",
-      "origin": "local-skill",
-      "path": "skills/review-bus-protocol",
-      "project_template": true
-    },
-    {
-      "name": "imagegen",
-      "description": "Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas.",
-      "origin": "codex-system",
-      "path": "skills/imagegen",
-      "project_template": false
-    },
-    {
-      "name": "openai-docs",
-      "description": "Use for Codex models/pricing, scheduled tasks, skills, settings, setup, troubleshooting, customization, automations, and self-knowledge—including 'you,' 'your,' 'this app,' or 'this coding agent' when they refer to Codex—and for OpenAI APIs/products and ChatGPT Work. Also use for model choice/migration, prompting, SDKs, Responses, Realtime, agents, evals, and Chat/Work/Codex comparisons. Do not use for generic app/software tasks that merely mention Codex.",
-      "origin": "codex-system",
-      "path": "skills/openai-docs",
-      "project_template": false
-    },
-    {
-      "name": "review-agent",
-      "description": "Perform a read-only, defect-first review of a specified code change and return every actionable finding. Use when another agent delegates review of uncommitted changes, a base-branch diff, a commit, or custom review instructions.",
-      "origin": "codex-system",
-      "path": "skills/review-agent",
-      "project_template": false
-    },
-    {
-      "name": "skill-creator",
-      "description": "Create or update a Codex skill with appropriately scoped instructions and any needed supporting resources.",
-      "origin": "codex-system",
-      "path": "skills/skill-creator",
-      "project_template": false
-    },
-    {
-      "name": "skill-installer",
-      "description": "Install Codex skills into $CODEX_HOME/skills from a curated list or a GitHub repo path. Use when a user asks to list installable skills, install a curated skill, or install a skill from another repo (including private repos).",
-      "origin": "codex-system",
-      "path": "skills/skill-installer",
       "project_template": false
     }
   ],
@@ -826,6 +833,26 @@
       "skill": "review-bus-protocol",
       "path": "SKILL.md",
       "reason": "quoted_invalid_yaml_description"
+    },
+    {
+      "skill": "cns",
+      "path": "SKILL.md",
+      "reason": "portable_public_copy_and_current_user_authorization"
+    },
+    {
+      "skill": "cns",
+      "path": "references/AUTONOMOUS_RESEARCH.md",
+      "reason": "portable_public_copy_and_current_user_authorization"
+    },
+    {
+      "skill": "cns-autonomous-research",
+      "path": "SKILL.md",
+      "reason": "portable_public_copy_and_current_user_authorization"
+    },
+    {
+      "skill": "cns-autonomous-research",
+      "path": "agents/openai.yaml",
+      "reason": "portable_public_copy_and_current_user_authorization"
     }
   ],
   "plugin_skills": [
